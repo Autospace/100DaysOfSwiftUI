@@ -13,7 +13,7 @@ struct ContentView: View {
     @State private var tipPercentage = 20
     @FocusState private var amountIsFocused: Bool
 
-    let tipPercentages = [10, 15, 20, 25, 0]
+    let currencyCode: FloatingPointFormatStyle<Double>.Currency = .currency(code: Locale.current.currencyCode ?? "USD")
 
     var totalPerPerson: Double {
         let peopleCount = Double(numberOfPeople + 2)
@@ -26,11 +26,18 @@ struct ContentView: View {
         return amoutPerPerson
     }
 
+    var totalAmount: Double {
+        let tipValue = (checkAmount / 100) * Double(tipPercentage)
+        let grandTotal = checkAmount + tipValue
+
+        return grandTotal
+    }
+
     var body: some View {
         NavigationView {
             Form {
                 Section {
-                    TextField("Amount", value: $checkAmount, format: .currency(code: Locale.current.currencyCode ?? "USD"))
+                    TextField("Amount", value: $checkAmount, format: currencyCode)
                         .keyboardType(.decimalPad)
                         .focused($amountIsFocused)
 
@@ -43,17 +50,25 @@ struct ContentView: View {
 
                 Section {
                     Picker("Tip percentage", selection: $tipPercentage) {
-                        ForEach(tipPercentages, id: \.self) {
+                        ForEach(1...100, id: \.self) {
                             Text($0, format: .percent)
                         }
                     }
-                    .pickerStyle(.segmented)
+                    .pickerStyle(.automatic)
                 } header: {
                     Text("How much tip do you want to leave?")
                 }
 
                 Section {
-                    Text(totalPerPerson, format: .currency(code: Locale.current.currencyCode ?? "USD"))
+                    Text(totalPerPerson, format: currencyCode)
+                } header: {
+                    Text("Amount per person")
+                }
+
+                Section {
+                    Text(totalAmount, format: currencyCode)
+                } header: {
+                    Text("Total amount with tips")
                 }
             }
             .navigationTitle("WeSplit")
