@@ -10,10 +10,15 @@ import SwiftUI
 struct ContentView: View {
     @State private var showingScore = false
     @State private var scoreTitle = ""
+    private let gameOverTitle = "Game over"
+    @State private var showingGameOver = false
 
     @State private var countries = ["Estonia", "France", "Germany", "Ireland", "Italy", "Nigeria", "Poland", "Russia", "Spain", "UK", "US"].shuffled()
     @State private var correctAnswer = Int.random(in: 0...2)
+    @State private var selectedAnswer = 0
     @State private var score = 0
+    private let maxNumberOfQuestions = 8
+    @State private var numberOfAskedQuestions = 1
 
     var body: some View {
         ZStack {
@@ -69,11 +74,21 @@ struct ContentView: View {
         .alert(scoreTitle, isPresented: $showingScore) {
             Button("Continue", action: askQuestion)
         } message: {
-            Text("Your score is \(score)")
+            if scoreTitle == "Wrong" {
+                Text("Wrong! That’s the flag of \(countries[selectedAnswer]) \n Your score is \(score)")
+            } else {
+                Text("Your score is \(score)")
+            }
+        }
+        .alert(gameOverTitle, isPresented: $showingGameOver) {
+            Button("Restart", action: restart)
+        } message: {
+            Text("The game is over. Your score is \(score)")
         }
     }
 
     func flagTapped(_ number: Int) {
+        selectedAnswer = number
         if number == correctAnswer {
             scoreTitle = "Correct"
             score += 1
@@ -86,8 +101,19 @@ struct ContentView: View {
     }
 
     func askQuestion() {
-        countries.shuffle()
-        correctAnswer = Int.random(in: 0...2)
+        numberOfAskedQuestions += 1
+        if numberOfAskedQuestions <= maxNumberOfQuestions {
+            countries.shuffle()
+            correctAnswer = Int.random(in: 0...2)
+        } else {
+            showingGameOver = true
+        }
+    }
+
+    func restart() {
+        numberOfAskedQuestions = 0
+        score = 0
+        askQuestion()
     }
 }
 
