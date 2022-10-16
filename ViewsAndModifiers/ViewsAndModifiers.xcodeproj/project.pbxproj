@@ -11,6 +11,7 @@
 		5F07C84C28FB1651008AB1C6 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F07C84B28FB1651008AB1C6 /* ContentView.swift */; };
 		5F07C84E28FB1655008AB1C6 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F07C84D28FB1655008AB1C6 /* Assets.xcassets */; };
 		5F07C85128FB1655008AB1C6 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 5F07C85028FB1655008AB1C6 /* Preview Assets.xcassets */; };
+		5F07C85A28FC6B45008AB1C6 /* TitleViewModifier.swift in Sources */ = {isa = PBXBuildFile; fileRef = 5F07C85928FC6B45008AB1C6 /* TitleViewModifier.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -19,6 +20,7 @@
 		5F07C84B28FB1651008AB1C6 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		5F07C84D28FB1655008AB1C6 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		5F07C85028FB1655008AB1C6 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
+		5F07C85928FC6B45008AB1C6 /* TitleViewModifier.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TitleViewModifier.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -53,6 +55,7 @@
 			children = (
 				5F07C84928FB1651008AB1C6 /* ViewsAndModifiersApp.swift */,
 				5F07C84B28FB1651008AB1C6 /* ContentView.swift */,
+				5F07C85928FC6B45008AB1C6 /* TitleViewModifier.swift */,
 				5F07C84D28FB1655008AB1C6 /* Assets.xcassets */,
 				5F07C84F28FB1655008AB1C6 /* Preview Content */,
 			);
@@ -138,6 +141,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				5F07C84C28FB1651008AB1C6 /* ContentView.swift in Sources */,
+				5F07C85A28FC6B45008AB1C6 /* TitleViewModifier.swift in Sources */,
 				5F07C84A28FB1651008AB1C6 /* ViewsAndModifiersApp.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
